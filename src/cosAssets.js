@@ -1,11 +1,11 @@
 import COS from "cos-js-sdk-v5";
 
-export const COS_BUCKET = "liwanmin-0115-1454067572";
+export const COS_BUCKET = "sunhaifeng-1454067485";
 export const COS_REGION = "ap-guangzhou";
 export const COS_PUBLIC_BASE_URL = `https://${COS_BUCKET}.cos.${COS_REGION}.myqcloud.com`;
-export const CONTENT_MANIFEST_KEY = "site/liwanmin-portfolio.json";
+export const CONTENT_MANIFEST_KEY = "site/sunhaifeng-portfolio.json";
 
-const CONFIG_STORAGE_KEY = "liwanmin_cos_admin_config";
+const CONFIG_STORAGE_KEY = "sunhaifeng_cos_admin_config";
 
 export function cosAsset(fileName) {
   return `${COS_PUBLIC_BASE_URL}/assets/${fileName}`;

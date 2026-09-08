@@ -295,15 +295,32 @@ img, video { display: block; width: 100%; }
   background: linear-gradient(115deg, rgba(255,255,255,.08), transparent 30%, transparent 72%, rgba(201,255,47,.025));
   pointer-events: none;
 }
+.project-category-card.has-background::after {
+  background: linear-gradient(180deg, rgba(5,5,5,.2) 0%, rgba(5,5,5,.42) 45%, rgba(5,5,5,.88) 100%);
+}
+.project-category-background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(.88) brightness(.82);
+  transition: transform 700ms cubic-bezier(.2,.7,.2,1), filter 260ms ease;
+}
 .project-category-card:hover {
   border-color: rgba(201,255,47,.34);
   background: linear-gradient(145deg, rgba(255,255,255,.095), rgba(255,255,255,.025));
   transform: translateY(-5px);
 }
+.project-category-card.has-background:hover .project-category-background {
+  transform: scale(1.035);
+  filter: saturate(1) brightness(.9);
+}
 .project-category-topline,
-.project-category-title {
+.project-category-title,
+.project-category-enter {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 .project-category-topline {
   display: flex;

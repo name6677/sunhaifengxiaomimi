@@ -346,7 +346,7 @@ export function App() {
           <button className="project-view-backdrop" type="button" onClick={() => setActiveCategory(null)} aria-label="关闭项目列表" />
           <section className="project-view-panel">
             <header><div><small>{activeCategory.label}</small><h2 id="project-view-title">{activeCategory.title}</h2></div><button type="button" onClick={() => setActiveCategory(null)} aria-label="关闭"><X size={22} /></button></header>
-            {activeCategory.projects.length ? <div className="project-view-grid">{activeCategory.projects.map((project) => <article key={project.id} className="project-view-item"><img src={project.coverUrl} alt={`${project.title}封面`} /><div><small>{project.type}</small><h3>{project.title}</h3><p>{project.description}</p>{project.videoUrl ? <video controls preload="metadata" playsInline src={project.videoUrl} aria-label={`播放${project.title}`} /> : <span className="project-view-empty">暂未上传视频</span>}</div></article>)}</div> : <p className="project-view-empty">这里还没有项目，请通过右下角内容管理添加。</p>}
+            {activeCategory.projects.length ? <div className="project-view-grid">{activeCategory.projects.map((project) => <article key={project.id} className="project-view-item">{project.videoUrl ? <video controls preload="metadata" playsInline src={project.videoUrl} aria-label={`播放${project.title}`} /> : <span className="project-view-empty">暂未上传视频</span>}<div><small>{project.type}</small><h3>{project.title}</h3>{project.description && <p>{project.description}</p>}</div></article>)}</div> : <p className="project-view-empty">这里还没有项目，请通过右下角内容管理添加。</p>}
           </section>
         </div>
       )}

@@ -18,3 +18,5 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 ## Portfolio identity
 
 - Use 孙海峰 as the portfolio owner name, including the browser title, description, and default profile text.
+
+- Project list dialogs show videos without separate cover images. Use consistent 16:9 player frames and contain the full video without cropping.

@@ -13,6 +13,7 @@ import BlurText from "./components/BlurText";
 import ParticleText from "./components/ParticleText";
 import { cosAsset, loadManifest, localAsset, useLocalAssetFallback } from "./cosAssets";
 import AdminPanel from "./AdminPanel";
+import { bundledProjects, mergeProjects } from "./bundledProjects";
 
 const strengths = [
   ["01", "镜头语言", "善于构图与调度，用镜头传递情绪与信息，强化故事沉浸感。"],
@@ -36,10 +37,10 @@ export function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeAsset, setActiveAsset] = useState(null);
   const [activeCategory, setActiveCategory] = useState(null);
-  const [content, setContent] = useState({ galleryAssets, projects: [], siteMedia: {}, profile: {} });
+  const [content, setContent] = useState({ galleryAssets, projects: bundledProjects, siteMedia: {}, profile: {} });
 
   useEffect(() => {
-    loadManifest().then((saved) => { if (saved) setContent((current) => ({ ...current, ...saved, galleryAssets: Array.isArray(saved.galleryAssets) ? saved.galleryAssets : current.galleryAssets, projects: Array.isArray(saved.projects) ? saved.projects : current.projects })); }).catch(() => {});
+    loadManifest().then((saved) => { if (saved) setContent((current) => ({ ...current, ...saved, galleryAssets: Array.isArray(saved.galleryAssets) ? saved.galleryAssets : current.galleryAssets, projects: mergeProjects(Array.isArray(saved.projects) ? saved.projects : [], saved.removedProjectIds || []) })); }).catch(() => {});
   }, []);
 
   useEffect(() => {

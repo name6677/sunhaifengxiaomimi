@@ -102,7 +102,7 @@ export default function AdminPanel({ content, onContentChange }) {
     if (!window.confirm(`确认从网站移除「${project.title}」吗？`)) return;
     try {
       setStatus("正在移除项目并同步…");
-      const next = { ...content, projects: content.projects.filter((item) => item.id !== project.id) };
+      const next = { ...content, projects: content.projects.filter((item) => item.id !== project.id), removedProjectIds: [...new Set([...(content.removedProjectIds || []), project.id])] };
       await syncManifest(next);
       onContentChange(next);
       setStatus("项目已从网站移除，访客刷新后将不再看到它。");

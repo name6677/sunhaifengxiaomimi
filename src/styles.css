@@ -711,3 +711,10 @@ img, video { display: block; width: 100%; }
     transform: none;
   }
 }
+
+.project-groups { display:grid; gap:56px; }
+.project-group-heading { display:flex; align-items:end; justify-content:space-between; gap:16px; margin-bottom:24px; padding-bottom:18px; border-bottom:1px solid var(--line); }
+.project-group-heading small,.project-group .project-view-item small { color:var(--accent); font-size:11px; letter-spacing:.12em; }
+.project-group-heading h3 { margin:8px 0 0; font-size:clamp(28px,4vw,42px); }
+.project-group-heading > span { color:#999; font-size:12px; }
+.project-group .project-view-item h4 { margin:8px 0; font-size:clamp(20px,2vw,25px); overflow-wrap:anywhere; }

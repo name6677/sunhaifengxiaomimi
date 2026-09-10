@@ -81,7 +81,7 @@ export default function AdminPanel({ content, onContentChange }) {
     if (!window.confirm(`确认从网站移除「${asset.label}」吗？`)) return;
     try {
       setStatus("正在移除图片并同步…");
-      const next = { ...content, galleryAssets: content.galleryAssets.filter((item) => item.id !== asset.id) };
+      const next = { ...content, galleryAssets: content.galleryAssets.filter((item) => item.id !== asset.id), removedGalleryIds: [...new Set([...(content.removedGalleryIds || []), asset.id])] };
       await syncManifest(next);
       onContentChange(next);
       setStatus("图片已从网站移除，访客刷新后将不再看到它。");

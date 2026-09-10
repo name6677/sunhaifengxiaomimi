@@ -14,6 +14,7 @@ import ParticleText from "./components/ParticleText";
 import { cosAsset, loadManifest, localAsset, useLocalAssetFallback } from "./cosAssets";
 import AdminPanel from "./AdminPanel";
 import { bundledProjects, mergeProjects } from "./bundledProjects";
+import { mergeGallery } from "./bundledGallery";
 
 const strengths = [
   ["01", "镜头语言", "善于构图与调度，用镜头传递情绪与信息，强化故事沉浸感。"],
@@ -37,10 +38,10 @@ export function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeAsset, setActiveAsset] = useState(null);
   const [activeCategory, setActiveCategory] = useState(null);
-  const [content, setContent] = useState({ galleryAssets, projects: bundledProjects, siteMedia: {}, profile: {} });
+  const [content, setContent] = useState({ galleryAssets: mergeGallery(galleryAssets), projects: bundledProjects, siteMedia: {}, profile: {} });
 
   useEffect(() => {
-    loadManifest().then((saved) => { if (saved) setContent((current) => ({ ...current, ...saved, galleryAssets: Array.isArray(saved.galleryAssets) ? saved.galleryAssets : current.galleryAssets, projects: mergeProjects(Array.isArray(saved.projects) ? saved.projects : [], saved.removedProjectIds || []) })); }).catch(() => {});
+    loadManifest().then((saved) => { if (saved) setContent((current) => ({ ...current, ...saved, galleryAssets: mergeGallery(Array.isArray(saved.galleryAssets) ? saved.galleryAssets : galleryAssets, saved.removedGalleryIds || []), projects: mergeProjects(Array.isArray(saved.projects) ? saved.projects : [], saved.removedProjectIds || []) })); }).catch(() => {});
   }, []);
 
   useEffect(() => {
@@ -336,7 +337,7 @@ export function App() {
             </button>
             <img src={activeAsset.url || cosAsset(activeAsset.fileName)} data-fallback-src={activeAsset.fileName ? localAsset(activeAsset.fileName) : ""} onError={useLocalAssetFallback} alt={activeAsset.alt} />
             <figcaption>
-              <span>{activeAsset.id} / 06</span>
+              <span>{String(content.galleryAssets.filter((asset) => (asset.category || "characters") === (activeAsset.category || "characters")).findIndex((asset) => asset.id === activeAsset.id) + 1).padStart(2, "0")} / {String(content.galleryAssets.filter((asset) => (asset.category || "characters") === (activeAsset.category || "characters")).length).padStart(2, "0")}</span>
               <strong id="lightbox-title">{activeAsset.label}</strong>
             </figcaption>
           </figure>

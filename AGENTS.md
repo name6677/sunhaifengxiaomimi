@@ -14,3 +14,7 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 - Preserve the quiet black-box cinema/gallery direction: matte black surfaces, oversized Chinese typography, full-bleed cinematic imagery, near-invisible UI chrome, hairline dividers, and a single acid-lime playback accent.
 - Keep the page image-led and restrained. Avoid template-like card grids, decorative gradients, glassmorphism, neon cyberpunk styling, and excessive rounded corners.
 - The intended surface is desktop-first React + Vite with a maximum content width of 1700px.
+
+## Portfolio identity
+
+- Use 孙海峰 as the portfolio owner name, including the browser title, description, and default profile text.
